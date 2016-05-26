@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<link href="style.css" rel="stylesheet" type="text/css">
+    <span>{{ title }}</span></br>
+    <span>
+    <embed id="91" name="91" width="700" height="450"
+       src="http://91.9p91.com/9e.swf?autoplay=false&amp;video_id={{ VID }}&amp;mp4=999"
+       quality="high" bgcolor="white" play="true" loop="false" allowscriptaccess="always"
+       type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer">
+
+    </span></br>
+    <span><a href={{ file_url }}>下载文件</a></span>
+{% endblock %}

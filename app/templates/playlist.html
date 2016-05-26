@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{{ super() }}
+{% block content %}
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-2 column">
+            <p>这是测试区域</p>
+        </div>
+        <div class="col-md-8 column">
+             <div class="row">
+                 {% for video in object_list %}
+                <div class="col-md-4">
+
+                    <div class="thumbnail">
+                        <img src={{ video.imgs }} width="120" alt={{ video.title }} >
+                        <a title={{video.title}}>
+                            <span class="title">{{ video.title | truncate(11,True) }}</span></a><br>
+                        <span class="info">时长:</span>{{ video.duration }}<br>
+                        <span class="info">添加时间:</span> {{ video.time_created }} <br>
+                        <span class="info">作者:</span><a href={{ url_for('main.author',name=video.author)}}>{{ video.author }}</a><br>
+                        <span class="info">查看:</span> {{ video.viewed }}&nbsp; <span class="info">收藏:</span>{{ video.marked }}<br>
+                        <span class="info">留言:</span> {{ video.comments }}&nbsp;<span class="info">积分:</span> {{ video.marks }}<br>
+                        {% if video.play_url %}
+                            <span> <a href={{ url_for('main.play',url_id=video.id) }}>播放</a></span><br>
+                        {% else %}
+                            <span><a href={{ url_for('main.parse',url_id=video.id) }}>解析</a></span>
+                        {% endif %}
+                    </div>
+
+                </div>
+                 {% endfor %}
+             </div>
+             <div class="pagination ">
+                <a href="">{{ pagination.page }}/{{ pagination.pages }}</a>
+                <a href="/playlist/1">首页</a>
+                {% if pagination.has_prev %}
+                    <a href="/playlist/{{ pagination.prev_num }}">上一页</a>
+                {% endif %}
+                {% if pagination.page + 1 < pagination.pages %}
+                    <a href="/playlist/{{ pagination.page + 1 }}">{{ pagination.page + 1 }}</a>
+                {% endif %}
+                {% if pagination.page + 2 < pagination.pages %}
+                    <a href="/playlist/{{ pagination.page + 2 }}">{{ pagination.page + 2 }}</a>
+                {% endif %}
+                {% if pagination.page + 3 < pagination.pages %}
+                    <a href="/playlist/{{ pagination.page + 3 }}">{{ pagination.page + 3 }}</a>
+                {% endif %}
+                {% if pagination.page + 4 < pagination.pages %}
+                    <a href="/playlist/{{ pagination.page + 4 }}">{{ pagination.page + 4 }}</a>
+                {% endif %}
+                {% if pagination.page + 5 < pagination.pages %}
+                    <a href="/playlist/{{ pagination.page + 5 }}">{{ pagination.page + 5 }}</a>
+                {% endif %}
+                {% if pagination.has_next %}
+                    <a href="/playlist/{{ pagination.next_num }}">下一页</a>
+                {% endif %}
+                <a href="/playlist/{{ pagination.pages }}">尾页</a>
+             </div>
+      </div>
+        <div class="col-md-2 column">
+            <p>这是测试区域</p>
+        </div>
+</div>
+</div>
+{% endblock %}
