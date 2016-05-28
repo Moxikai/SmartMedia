@@ -27,7 +27,7 @@ class DevelopmentConfig(Config):
     MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
     #开发数据库从环境变量中读取,或者使用如下默认路径
     SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DATABASE_URL') or \
-                              'sqlite:///' + os.path.join(basedir,'data-dev.sqlite')
+                              'sqlite:///' + os.path.join(basedir,'media.sqlite')
 
 #测试配置
 class TestingConfig(Config):

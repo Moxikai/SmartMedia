@@ -7,6 +7,14 @@ from flask.ext.script import Manager,Shell
 from flask.ext.migrate import Migrate,MigrateCommand
 
 app = create_app(os.getenv('FLASK_CONFIG') or 'default')
+
+#自定义过滤器
+def get_img_list(str):
+    list=str.split(';')
+    return list[0]
+env = app.jinja_env
+env.filters['get_img_list']=get_img_list
+
 manager = Manager(app)
 migrate=Migrate(app,db)
 
